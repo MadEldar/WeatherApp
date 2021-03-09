@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="60dp">
 
         <TextView
             android:id="@+id/tvTemperature"
@@ -46,7 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_below="@+id/tvIconPhrase"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tvLocation"
@@ -64,6 +65,13 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_below="@id/tvLocation"
-        android:orientation="horizontal"/>
+        android:layout_marginTop="10dp"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDailyForecast"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        android:layout_below="@+id/rvHourlyForecast"
+        android:layout_marginTop="15dp"/>
 
 </RelativeLayout>

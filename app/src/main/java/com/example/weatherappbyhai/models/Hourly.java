@@ -5,16 +5,16 @@ import android.annotation.SuppressLint;
 import java.util.Date;
 
 public class Hourly {
-    public Date DateTime;
-    public int EpochDatetime;
-    public int WeatherIcon;
-    public String IconPhrase;
-    public boolean HasPrecipitation;
-    public boolean IsDaylight;
-    public Temperature Temperature;
-    public int PrecipitationProbability;
-    public String MobileLink;
-    public String Link;
+    private Date DateTime;
+    private int EpochDatetime;
+    private int WeatherIcon;
+    private String IconPhrase;
+    private boolean HasPrecipitation;
+    private boolean IsDaylight;
+    private Temperature Temperature;
+    private int PrecipitationProbability;
+    private String MobileLink;
+    private String Link;
 
     public Hourly(Date dateTime, int epochDatetime, int weatherIcon, String iconPhrase, boolean hasPrecipitation, boolean isDaylight, com.example.weatherappbyhai.models.Temperature temperature, int precipitationProbability, String mobileLink, String link) {
         DateTime = dateTime;

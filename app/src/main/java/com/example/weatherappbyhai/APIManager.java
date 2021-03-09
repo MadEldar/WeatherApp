@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 
 public interface APIManager {
     String SERVER = "http://dataservice.accuweather.com/";
-    String API_KEY = "YvLXLyI3SiE8xuQKF3p4A1B1I1RksiXR";
+    String API_KEY = "93Qg780lHwYM4SO58n7DFPLqHg4oKADn";
     String QUERY = "?apikey=" + API_KEY + "&language=vi-vn&metric=true";
 
     @GET("forecasts/v1/daily/5day/353412" + QUERY)

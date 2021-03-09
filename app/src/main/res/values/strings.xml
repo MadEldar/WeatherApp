@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WeatherAppByHai</string>
     <string name="main_location">Hanoi</string>
-    <string name="app_degree">°</string>
+    <string name="symbol_degree">°</string>
+    <string name="symbol_dash">-</string>
     <string name="app_unit">°%1$s</string>
 </resources>

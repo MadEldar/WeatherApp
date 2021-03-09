@@ -1,8 +1,8 @@
 package com.example.weatherappbyhai.models;
 
 public class DailyTemperature {
-    public Temperature Minimum;
-    public Temperature Maximum;
+    private Temperature Minimum;
+    private Temperature Maximum;
 
     public DailyTemperature(Temperature minimum, Temperature maximum) {
         Minimum = minimum;

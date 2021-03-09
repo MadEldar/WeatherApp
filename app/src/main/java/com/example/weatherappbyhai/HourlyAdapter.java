@@ -33,7 +33,7 @@ public class HourlyAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = activity.getLayoutInflater().inflate(R.layout.item_hourely, parent, false);
+        View itemView = activity.getLayoutInflater().inflate(R.layout.item_hourly, parent, false);
         return new HourlyHolder(itemView);
     }
 
@@ -42,7 +42,8 @@ public class HourlyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Hourly model = listData.get(position);
         HourlyHolder vh = (HourlyHolder) holder;
-        vh.tvTime.setText(String.valueOf(model.getDateTime().getHours()));
+        int hour = model.getDateTime().getHours();
+        vh.tvTime.setText(hour > 12 ? String.format("%dpm", hour - 12) : String.format("%dam", hour));
         vh.tvTemperature.setText(String.valueOf(model.getTemperature().getValue()));
 
         vh.tvUnit.setText(model.getTemperature().getUnit());

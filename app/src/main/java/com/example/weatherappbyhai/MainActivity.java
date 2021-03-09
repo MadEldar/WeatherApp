@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.weatherappbyhai.models.Daily;
+import com.example.weatherappbyhai.models.DailyForecast;
 import com.example.weatherappbyhai.models.Hourly;
 
 import java.util.ArrayList;
@@ -25,13 +26,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    Daily dailyForecast;
+    Daily daily;
     List<Hourly> hourlyForecast = new ArrayList<>();
-    HourlyAdapter adapter;
+    HourlyAdapter hourlyAdapter;
+    DailyAdapter dailyAdapter;
 
     TextView tvTemperature, tvUnit, tvIconPhrase, tvLocation;
     ImageView ivIcon;
-    RecyclerView rvHourlyForecast;
+    RecyclerView rvHourlyForecast, rvDailyForecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +50,33 @@ public class MainActivity extends AppCompatActivity {
 
         getHourlyForecast(this);
 
-        adapter = new HourlyAdapter(this, hourlyForecast);
+        hourlyAdapter = new HourlyAdapter(this, hourlyForecast);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
+        RecyclerView.LayoutManager layoutHourly = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
             @Override
             public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
-                lp.width = getWidth() / 4;
+                lp.width = getWidth() / 5;
                 return super.checkLayoutParams(lp);
             }
         };
 
         rvHourlyForecast = findViewById(R.id.rvHourlyForecast);
-        rvHourlyForecast.setLayoutManager(layoutManager);
-        rvHourlyForecast.setAdapter(adapter);
+        rvHourlyForecast.setLayoutManager(layoutHourly);
+        rvHourlyForecast.setAdapter(hourlyAdapter);
+
+        dailyAdapter = new DailyAdapter(this, new ArrayList<>());
+
+        RecyclerView.LayoutManager layoutDaily = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
+            @Override
+            public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
+                lp.width = getWidth() / 3;
+                return super.checkLayoutParams(lp);
+            }
+        };
+
+        rvDailyForecast = findViewById(R.id.rvDailyForecast);
+        rvDailyForecast.setLayoutManager(layoutDaily);
+        rvDailyForecast.setAdapter(dailyAdapter);
     }
 
     private void getDailyForecast() {
@@ -73,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         service.getDailyForeCast().enqueue(new Callback<Daily>() {
             @Override
             public void onResponse(Call<Daily> call, Response<Daily> response) {
-                dailyForecast = response.body();
-                Log.d("Debug", "Daily loaded");
+                daily = response.body();
+                dailyAdapter.reloadData(daily.getDailyForecasts());
             }
 
             @Override
@@ -96,15 +112,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Hourly>> call, Response<List<Hourly>> response) {
                 if (response.isSuccessful()) {
                     hourlyForecast = response.body();
-                    Log.d("Debug", "Hourly loaded");
-                    adapter.reloadData(hourlyForecast);
+                    hourlyAdapter.reloadData(hourlyForecast);
 
                     Hourly currentForecast = hourlyForecast.iterator().next();
 
                     tvIconPhrase.setText(String.valueOf(currentForecast.getIconPhrase()));
                     tvTemperature.setText(String.valueOf(currentForecast.getTemperature().getValue()));
                     Resources res = getResources();
-                    tvUnit.setText(String.format(res.getString(R.string.app_unit), currentForecast.getTemperature().Unit));
+                    tvUnit.setText(String.format(res.getString(R.string.app_unit), currentForecast.getTemperature().getUnit()));
                     Glide.with(activity).load(currentForecast.getWeatherIconLink()).into(ivIcon);
                 } else {
                     Log.d("Debug", response.message());

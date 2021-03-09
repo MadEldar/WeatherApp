@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="10dp">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/layoutTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvDate">
+        <TextView
+            android:id="@+id/tvMinimumTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvDash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/symbol_dash"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvMaximumTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/symbol_degree"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutTemperature"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/layoutDay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tvDayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/ivDayIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tvDayTitle"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/tvDayIconPhrase"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Something"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_below="@id/ivDayIcon"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutNight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tvNightTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Night"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/ivNightIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tvNightTitle"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/tvNightIconPhrase"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Something"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_below="@id/ivNightIcon"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

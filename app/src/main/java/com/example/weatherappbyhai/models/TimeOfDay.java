@@ -1,11 +1,13 @@
 package com.example.weatherappbyhai.models;
 
+import android.annotation.SuppressLint;
+
 public class TimeOfDay {
-    public int Icon;
-    public String IconPhrase;
-    public boolean HasPrecipitation;
-    public String PrecipitationType;
-    public String PrecipitationIntensity;
+    private int Icon;
+    private String IconPhrase;
+    private boolean HasPrecipitation;
+    private String PrecipitationType;
+    private String PrecipitationIntensity;
 
     public TimeOfDay(int icon, String iconPhrase, boolean hasPrecipitation, String precipitationType, String precipitationIntensity) {
         Icon = icon;
@@ -17,6 +19,11 @@ public class TimeOfDay {
 
     public int getIcon() {
         return Icon;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public String getIconLink() {
+        return "https://developer.accuweather.com/sites/default/files/" + String.format("%02d", Icon) + "-s.png";
     }
 
     public void setIcon(int icon) {

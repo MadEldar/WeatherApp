@@ -1,9 +1,9 @@
 package com.example.weatherappbyhai.models;
 
 public class Temperature {
-    public double Value;
-    public String Unit;
-    public int UnitType;
+    private double Value;
+    private String Unit;
+    private int UnitType;
 
     public Temperature(double value, String unit, int unitType) {
         Value = value;
